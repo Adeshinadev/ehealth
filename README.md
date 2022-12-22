@@ -1,4 +1,5 @@
 # ehealth
+This system manages Interaction between Health workers and Patients,Patients can book for appointment to meet with health workers ( an email is sent to **promotional folder** of health worker) and the health worker can either approve of decline request.
 <img width="1440" alt="Screenshot 2022-12-23 at 00 09 45" src="https://user-images.githubusercontent.com/53658477/209241684-4f12582d-c6ad-4378-af9a-cc8305a4b28e.png">
 <img width="1440" alt="Screenshot 2022-12-23 at 00 09 59" src="https://user-images.githubusercontent.com/53658477/209241696-84f71d56-e1de-4aea-a233-158f0baaf573.png">
 <img width="1440" alt="Screenshot 2022-12-23 at 00 10 10" src="https://user-images.githubusercontent.com/53658477/209241698-459313b8-00e8-4746-ac4d-c5cc1fd1f115.png">

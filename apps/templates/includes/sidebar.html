@@ -1,0 +1,44 @@
+<!-- [ navigation menu ] start -->
+<nav class="pcoded-navbar">
+    <div class="navbar-wrapper">
+        <div class="navbar-brand header-logo">
+            <a href="/" class="b-brand">
+                <img src="https://00or3.mjt.lu/tplimg/00or3/b/lzy9r/s5928.png">
+            </a>
+            <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
+        </div>
+        <div class="navbar-content scroll-div">
+            <ul class="nav pcoded-inner-navbar">
+                <li class="nav-item pcoded-menu-caption">
+                    <label>Navigation</label>
+                </li>
+                <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" 
+                    class="nav-item {% if 'index' in segment %} active {% endif %}">
+                    <a {% if user_profile.patient %} href="{% url 'patient_login' %}" {% else %} href="{% url 'health_worker_login' %}"  {% endif %} class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span
+                            class="pcoded-mtext">Dashboard</span></a>
+                </li> <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project"
+                    class="nav-item {% if 'index' in segment %} active {% endif %}">
+                    <a  href="{% url 'general_medical_report' %}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span
+                            class="pcoded-mtext">General Report</span></a>
+                </li>
+                <li data-username="Profile Page" 
+                    class="nav-item {% if 'medical_records' in segment %} active {% endif %}">
+                    {% if user_profile.patient %}
+                    <a href="{% url 'medical-records' %}" class="nav-link">
+                        <span class="pcoded-micon"><i class="feather icon-user"></i></span>
+                            <span class="pcoded-mtext">Medical Record</span></a>
+                    {% else %}
+                    <a href="{% url 'medical-records' %}" class="nav-link">
+                        <span class="pcoded-micon"><i class="feather icon-user"></i></span>
+                            <span class="pcoded-mtext">Medical Records</span></a>
+                    {% endif %}
+                </li>                
+
+
+
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- [ navigation menu ] end -->

@@ -1,0 +1,122 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<style>
+
+    .theme-bg8{
+    background-color:red;
+    }
+</style>
+
+
+
+
+    <!-- [ Main Content ] start -->
+    <div class="pcoded-main-container">
+        <div class="pcoded-wrapper">
+
+            <div class="pcoded-content">
+                    {% for message in messages %}
+<div class="alert {% if message.tags == 'error' %} alert-danger {% else %} alert-success {% endif %}" role="alert">
+    {{message}}
+</div>
+                {% endfor %}
+                <div class="pcoded-inner-content">
+                    <!-- [ breadcrumb ] start -->
+
+                    <!-- [ breadcrumb ] end -->
+                    <div class="main-body">
+                        <div class="page-wrapper">
+                            <!-- [ Main Content ] start -->
+                              <h4>Health Worker Dashboard</h4>
+
+                            <!-- [ Main Content ] end -->
+ <div class="col-xl-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>Search Medical Records</h5>
+
+                                        </div>
+                                         <div class="card-body">
+                                             <form action="{% url 'search_medical_records' %}" method="post">
+                                                 {% csrf_token %}
+                                        <div class="form-group">
+                                                            <label for="exampleFormControlSelect1">Conditions</label>
+                                                            <select class="form-control" id="exampleFormControlSelect1" name="condition" required>
+                                                                <option value="" disabled>Select an option ...</option>
+                                                                {% for i in conditions %}
+                                                                <option>{{i}}</option>
+                                                                {% endfor %}
+
+                                                            </select>
+                                                        </div>
+                                        <button type="submit" class="btn btn-primary">Search</button>
+                                                 </form>
+                                         </div>
+                                    </div></div>
+
+
+
+
+
+                          <div class="col-xl-12">
+                                    <div class="card">
+                                        <div class="card-header">
+{% if change %}
+                                            <h5>Search result for {{condition}}</h5>
+                                            {% else %}
+                                            <h5>Medical Records</h5>
+{% endif %}
+                                        </div>
+                                        <div class="card-block table-border-style">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Patient Name</th>
+                                                            <th>Age</th>
+                                                            <th>Gender</th>
+                                                            <th>Medical Records</th>
+                                                            <th>Others</th>
+
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for i in records %}
+                                                        <tr>
+                                                            <th scope="row">{{forloop.counter}}</th>
+                                                            <td>{{i.user.first_name}} {{i.user.last_name}}</td>
+                                                            <td>{{i.age}}</td>
+                                                            <td>{{i.gender}}</td>
+                                                            <td>{{i.medical_records}}</td>
+                                                            <td>{{i.other_details}}</td>
+
+                                                        </tr>
+                                                    {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- [ Main Content ] end -->            
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

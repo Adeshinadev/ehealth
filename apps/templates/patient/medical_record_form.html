@@ -1,0 +1,145 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} UI Forms {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <!-- [ Main Content ] start -->
+    <div class="pcoded-main-container">
+        <div class="pcoded-wrapper">
+
+            <div class="pcoded-content">
+                <div class="pcoded-inner-content">
+                    <!-- [ breadcrumb ] start -->
+                    <div class="page-header">
+                        <div class="page-block">
+                            <div class="row align-items-center">
+                                <div class="col-md-12">
+
+                                    <ul class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
+                                        <li class="breadcrumb-item"><a href="javascript:">Form Componants</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript:">Form Elements</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [ breadcrumb ] end -->
+                    <div class="main-body">
+                        <div class="page-wrapper">
+                            <!-- [ Main Content ] start -->
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>
+                                                {% if medical_record %}
+                                                Update Medical Records
+                                                {% else %}
+                                                Medical Records Form
+                                                {% endif %}
+
+                                            </h5>
+
+                                        </div>
+                                        <div class="card-body">
+
+<form action="{% url 'medical-records' %}" method="post">
+{% csrf_token %}
+                                            <div class="row">
+
+                                                <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Email address</label>
+                                                            <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" value="{{request.user.email}}" readonly>
+
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="age">Age</label>
+                                                            <input type="number" class="form-control" name="age" value="{{medical_record.age}}"  id="age" required>
+                                                        </div>
+
+
+                                                </div>
+                                                <div class="col-md-6">
+
+                                                       <div class="form-group">
+                                                            <label for="phone_number">Phone number</label>
+                                                            <input type="text" class="form-control" value="{{request.user.profile.phone_number}}" id="phone_number" name="phone_no" readonly>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlSelect1">Gender</label>
+                                                            <select class="form-control" id="exampleFormControlSelect1" name="gender" required>
+                                                                <option value="" disabled>Select an option ...</option>
+                                                                <option {% if medical_record.gender == "Male" %} selected {% endif %}>Male</option>
+                                                                <option {% if medical_record.gender == "Female" %} selected {% endif %}>Female</option>
+
+                                                            </select>
+                                                        </div>
+
+
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="row" style="margin-left:0px;">
+                                                {% if medical_record %}
+                                                <h6>Initial conditions are: {{medical_record.medical_records}}, please click  all condition to update</h6>
+                                                {% else %}
+                                                <h6> Check the conditions that apply to you or any member of your immediate relatives:</h6><br>
+                                                {% endif %}
+                                                <div class="col-md-12" >
+{% for condition in conditions %}
+                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                        <input type="checkbox" value="{{condition}}" name="{{condition}}" id="customRadioInline{{forloop.counter}}" class="custom-control-input">
+                                                        <label class="custom-control-label" for="customRadioInline{{forloop.counter}}">{{condition}}</label>
+                                                    </div>
+
+
+{% endfor %}
+                                                </div>
+
+                                            </div>
+                                            <br>
+                                              <div class="form-group">
+                                                            <label for="exampleFormControlTextarea1">Please enter any other information you'd like us to know</label>
+                                                            <textarea   name="others" class="form-control" id="exampleFormControlTextarea1" rows="3">{{medical_record.other_details}}</textarea>
+                                                        </div>
+     {% if medical_record %}
+                                             <button type="submit" class="btn btn-primary">Update</button>
+    {% else %}
+                                             <button type="submit" class="btn btn-primary">Submit</button>
+    {% endif %}
+    </form>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Input group -->
+
+
+
+                                </div>
+                            </div>
+                            <!-- [ Main Content ] end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <!-- [ Main Content ] end -->
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

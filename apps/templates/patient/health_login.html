@@ -1,0 +1,233 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<style>
+
+    .theme-bg8{
+    background-color:red;
+    }
+</style>
+
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      console.log("{{stats_list}}")
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Month', 'Accepted', 'Declined'],
+          {% for i in stats_list %}
+          ['{{i.0}}', '{{i.1}}', '{{i.2}}'],
+          {% endfor %}
+        ]);
+
+        var options = {
+          chart: {
+
+          },
+          bars: 'vertical' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+
+    <!-- [ Main Content ] start -->
+    <div class="pcoded-main-container">
+        <div class="pcoded-wrapper">
+
+            <div class="pcoded-content">
+                    {% for message in messages %}
+<div class="alert {% if message.tags == 'error' %} alert-danger {% else %} alert-success {% endif %}" role="alert">
+    {{message}}
+</div>
+                {% endfor %}
+                <div class="pcoded-inner-content">
+                    <!-- [ breadcrumb ] start -->
+
+                    <!-- [ breadcrumb ] end -->
+                    <div class="main-body">
+                        <div class="page-wrapper">
+                            <!-- [ Main Content ] start -->
+                              <h4>Health Worker Dashboard</h4>
+                            <div class="row">
+                                <!--[ daily sales section ] start-->
+                                <div class="col-md-6 col-xl-4">
+                                    <div class="card daily-sales">
+                                        <div class="card-block">
+                                            <h6 class="mb-4">Accepted appointments</h6>
+                                            <div class="row d-flex align-items-center">
+                                                <div class="col-9">
+                                                    <h3 class="f-w-300 d-flex align-items-center m-b-0">
+                                                        {{accepted_appointments}}
+                                                    </h3>
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--[ daily sales section ] end-->
+                                <!--[ Monthly  sales section ] starts-->
+                                <div class="col-md-6 col-xl-4">
+                                    <div class="card Monthly-sales">
+                                        <div class="card-block">
+                                            <h6 class="mb-4">Pending Appointments</h6>
+                                            <div class="row d-flex align-items-center">
+                                                <div class="col-9">
+                                                    <h3 class="f-w-300 d-flex align-items-center  m-b-0">
+                                                        {{pending_appointments}}</h3>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--[ Monthly  sales section ] end-->
+                                <!--[ year  sales section ] starts-->
+                                <div class="col-md-12 col-xl-4">
+                                    <div class="card yearly-sales">
+                                        <div class="card-block">
+                                            <h6 class="mb-4">Rejected Appointments</h6>
+                                            <div class="row d-flex align-items-center">
+                                                <div class="col-9">
+                                                    <h3 class="f-w-300 d-flex align-items-center  m-b-0">{{declined_appointments}}</h3>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--[ year  sales section ] end-->
+                                <!--[ Recent Users ] start-->
+
+
+
+
+
+
+                                <!--[ Recent Users ] end-->
+
+                                <!-- [ statistics year chart ] start -->
+
+
+
+                                <!-- [ statistics year chart ] end -->
+                                <!--[social-media section] start-->
+
+                                <!--[social-media section] end-->
+                                <!-- [ rating list ] starts-->
+
+                                <!-- [ rating list ] end-->
+
+
+                            </div>
+                            <!-- [ Main Content ] end -->
+                                  <div class="card Recent-Users">
+                                        <div class="card-header">
+                                            <h5>Book Appointment</h5>
+                                        </div>
+                                        <div class="card-block px-0 py-3">
+
+
+                                              <div class="card-body">
+ <div id="barchart_material" style="width: 900px; height: 500px;"></div>
+                                        </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                          <div class="col-xl-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>Appointments</h5>
+
+                                        </div>
+                                        <div class="card-block table-border-style">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Patient Name</th>
+                                                            <th>Address</th>
+                                                            <th>State</th>
+                                                            <th>Date</th>
+                                                            <th>Procedure</th>
+                                                            <th>Others</th>
+                                                            <th>Status</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for i in appointments %}
+                                                        <tr>
+                                                            <th scope="row">{{forloop.counter}}</th>
+                                                            <td>{{i.user.user.first_name}} {{i.user.user.last_name}}</td>
+                                                            <td>{{i.address}}</td>
+                                                            <td>{{i.state}}</td>
+                                                            <td>{{i.date}}</td>
+                                                            <td>{{i.procedure}}</td>
+
+                                                            <td>
+                                                                {% if i.other %}
+                                                                {{i.other}}
+                                                                {% else %}
+                                                                Nil
+                                                                {% endif %}
+
+                                                            </td>
+                                                             <td>{{i.status}}</td>
+                                                            <td>
+{% if i.status == "Pending" %}
+                                                                 <div class="btn-group mb-2 mr-2">
+                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Respond</button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="{% url 'accept' appointment_id=i.id %}">Accept</a>
+                                                    <a class="dropdown-item" href="{% url 'decline' appointment_id=i.id %}">Decline</a>
+
+                                                </div>
+                                            </div>
+                                                                {% else %}
+                                                                You have {{i.status}} this appointment
+{% endif %}
+
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- [ Main Content ] end -->            
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

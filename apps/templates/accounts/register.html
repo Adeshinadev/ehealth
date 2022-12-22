@@ -1,0 +1,72 @@
+{% extends "layouts/base-fullscreen.html" %}
+
+{% block title %} Register {% endblock %}
+
+{% block content %}
+<style>
+    input[type=radio] {
+    border: 0px;
+    width: 100%;
+    height: 2em;
+}
+</style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <div class="auth-wrapper">
+        <div class="auth-content">
+            <div class="auth-bg">
+                <span class="r"></span>
+                <span class="r s"></span>
+                <span class="r s"></span>
+                <span class="r"></span>
+            </div>
+            <form action="{% url 'register' %}" method="post">
+                {% csrf_token %}
+            <div class="card">
+                <div class="card-body text-center">
+                    <div class="mb-4">
+                        <i class="feather icon-user-plus auth-icon"></i>
+                    </div>
+                    <h3 class="mb-4">Sign up</h3>
+ {% for message in messages %}
+                            <span class="{% if message.tags == 'error' %} text-danger {% else %} text-success {% endif %}">{{ message }}</span>
+                         {% endfor %}
+                     <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="first_name" placeholder="Enter first name" required>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="last_name" placeholder="Enter last name" required>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" name="email" placeholder="Email" required>
+                    </div>
+
+                     <div class="input-group mb-4">
+                        <input type="number" class="form-control" name="phone_no" placeholder="Phone number" required>
+                    </div>
+                     <div class="input-group mb-4">
+                        <input type="password" class="form-control" name="password" placeholder="password" required>
+                    </div>
+
+                     <div class="input-group mb-4">
+                    <select class="form-select " aria-label="Default select example" name="user_type" required>
+  <option value="" selected disabled="disabled">Select an option ...</option>
+ <option value="1">Patient</option>
+  <option value="2">Health Worker</option>
+
+</select>
+                     </div>
+
+                    <button class="btn btn-primary shadow-2 mb-4">Sign up</button>
+                    <p class="mb-0 text-muted">Already have an account? <a href="/login.html"> Sign IN</a></p>
+                </div>
+            </div>
+                </form>
+        </div>
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
+

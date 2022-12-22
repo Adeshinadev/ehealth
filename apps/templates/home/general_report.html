@@ -1,0 +1,100 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<style>
+
+    .theme-bg8{
+    background-color:red;
+    }
+</style>
+
+
+
+   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawStuff);
+
+      function drawStuff() {
+        var data = new google.visualization.arrayToDataTable([
+
+          ['Condition', 'Patients'],
+          {% for i in stats %}
+          ["{{i.0}}", "{{i.1}}"],
+          {% endfor %}
+        ]);
+
+        var options = {
+          width: 800,
+          legend: { position: 'none' },
+          chart: {
+             },
+          axes: {
+            x: {
+              0: { side: 'bottom', label: 'Conditions'} // Top x-axis.
+            }
+          },
+          bar: { groupWidth: "90%" }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+        // Convert the Classic options to Material options.
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      };
+    </script>
+
+    <!-- [ Main Content ] start -->
+    <div class="pcoded-main-container">
+        <div class="pcoded-wrapper">
+
+            <div class="pcoded-content">
+                    {% for message in messages %}
+<div class="alert {% if message.tags == 'error' %} alert-danger {% else %} alert-success {% endif %}" role="alert">
+    {{message}}
+</div>
+                {% endfor %}
+                <div class="pcoded-inner-content">
+                    <!-- [ breadcrumb ] start -->
+
+                    <!-- [ breadcrumb ] end -->
+                    <div class="main-body">
+                        <div class="page-wrapper">
+                            <!-- [ Main Content ] start -->
+
+
+
+
+                            <!-- [ Main Content ] end -->
+                                  <div class="card Recent-Users">
+                                        <div class="card-header">
+                                            <h5>General Medical Report</h5>
+                                        </div>
+                                        <div class="card-block px-0 py-3">
+
+
+                                              <div class="card-body">
+  <div id="top_x_div" style="width: 800px; height: 600px;"></div>
+                                        </div>
+                                        </div>
+
+                                    </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- [ Main Content ] end -->            
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

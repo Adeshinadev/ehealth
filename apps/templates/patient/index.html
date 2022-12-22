@@ -1,0 +1,343 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<style>
+
+    .theme-bg8{
+    background-color:red;
+    }
+</style>
+    <!-- [ Main Content ] start -->
+    <div class="pcoded-main-container">
+        <div class="pcoded-wrapper">
+
+            <div class="pcoded-content">
+                    {% for message in messages %}
+<div class="alert {% if message.tags == 'error' %} alert-danger {% else %} alert-success {% endif %}" role="alert">
+    {{message}}
+</div>
+                {% endfor %}
+                <div class="pcoded-inner-content">
+                    <!-- [ breadcrumb ] start -->
+
+                    <!-- [ breadcrumb ] end -->
+                    <div class="main-body">
+                        <div class="page-wrapper">
+                            <!-- [ Main Content ] start -->
+                            <h4>User Dashboard</h4>
+                            <div class="row">
+                                <!--[ daily sales section ] start-->
+                                <div class="col-md-6 col-xl-4">
+                                    <div class="card daily-sales">
+                                        <div class="card-block">
+                                            <h6 class="mb-4">Total number of appointments</h6>
+                                            <div class="row d-flex align-items-center">
+                                                <div class="col-9">
+                                                    <h3 class="f-w-300 d-flex align-items-center m-b-0">
+                                                        {{appointment_count}}
+                                                    </h3>
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--[ daily sales section ] end-->
+                                <!--[ Monthly  sales section ] starts-->
+                                <div class="col-md-6 col-xl-4">
+                                    <div class="card Monthly-sales">
+                                        <div class="card-block">
+                                            <h6 class="mb-4">Pending Appointments</h6>
+                                            <div class="row d-flex align-items-center">
+                                                <div class="col-9">
+                                                    <h3 class="f-w-300 d-flex align-items-center  m-b-0">
+                                                        {{pending_appointments}}</h3>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--[ Monthly  sales section ] end-->
+                                <!--[ year  sales section ] starts-->
+                                <div class="col-md-12 col-xl-4">
+                                    <div class="card yearly-sales">
+                                        <div class="card-block">
+                                            <h6 class="mb-4">Rejected Appointments</h6>
+                                            <div class="row d-flex align-items-center">
+                                                <div class="col-9">
+                                                    <h3 class="f-w-300 d-flex align-items-center  m-b-0">{{declined_appointments}}</h3>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--[ year  sales section ] end-->
+                                <!--[ Recent Users ] start-->
+
+
+
+
+
+
+                                <!--[ Recent Users ] end-->
+
+                                <!-- [ statistics year chart ] start -->
+
+
+
+                                <!-- [ statistics year chart ] end -->
+                                <!--[social-media section] start-->
+
+                                <!--[social-media section] end-->
+                                <!-- [ rating list ] starts-->
+
+                                <!-- [ rating list ] end-->
+
+
+                            </div>
+                            <!-- [ Main Content ] end -->
+                                  <div class="card Recent-Users">
+                                        <div class="card-header">
+                                            <h5>Book Appointment</h5>
+                                        </div>
+                                        <div class="card-block px-0 py-3">
+<!--                                            <div class="table-responsive">-->
+<!--                                                <table class="table table-hover">-->
+<!--                                                    <tbody>-->
+<!--                                                    <tr class="unread">-->
+<!--                                                        <td><img class="rounded-circle" style="width:40px;"-->
+<!--                                                                    src="{{ ASSETS_ROOT }}/images/user/avatar-1.jpg" alt="activity-user">-->
+<!--                                                        </td>-->
+<!--                                                        <td>-->
+<!--                                                            <h6 class="mb-1">Isabella Christensen</h6>-->
+<!--                                                            <p class="m-0">Lorem Ipsum is simply…</p>-->
+<!--                                                        </td>-->
+<!--                                                        <td>-->
+<!--                                                            <h6 class="text-muted"><i-->
+<!--                                                                    class="fas fa-circle text-c-green f-10 m-r-15"></i>11-->
+<!--                                                                MAY 12:56</h6>-->
+<!--                                                        </td>-->
+<!--                                                        <td><a href="#!"-->
+<!--                                                                class="label theme-bg2 text-white f-12">Reject</a><a-->
+<!--                                                                href="#!" class="label theme-bg text-white f-12">Approve</a>-->
+<!--                                                        </td>-->
+<!--                                                    </tr>-->
+<!--                                                    <tr class="unread">-->
+<!--                                                        <td><img class="rounded-circle" style="width:40px;"-->
+<!--                                                                    src="{{ ASSETS_ROOT }}/images/user/avatar-2.jpg" alt="activity-user">-->
+<!--                                                        </td>-->
+<!--                                                        <td>-->
+<!--                                                            <h6 class="mb-1">Mathilde Andersen</h6>-->
+<!--                                                            <p class="m-0">Lorem Ipsum is simply text of…</p>-->
+<!--                                                        </td>-->
+<!--                                                        <td>-->
+<!--                                                            <h6 class="text-muted"><i-->
+<!--                                                                    class="fas fa-circle text-c-red f-10 m-r-15"></i>11 MAY-->
+<!--                                                                10:35</h6>-->
+<!--                                                        </td>-->
+<!--                                                        <td><a href="#!"-->
+<!--                                                                class="label theme-bg2 text-white f-12">Reject</a><a-->
+<!--                                                                href="#!" class="label theme-bg text-white f-12">Approve</a>-->
+<!--                                                        </td>-->
+<!--                                                    </tr>-->
+<!--                                                    <tr class="unread">-->
+<!--                                                        <td><img class="rounded-circle" style="width:40px;"-->
+<!--                                                                    src="{{ ASSETS_ROOT }}/images/user/avatar-3.jpg" alt="activity-user">-->
+<!--                                                        </td>-->
+<!--                                                        <td>-->
+<!--                                                            <h6 class="mb-1">Karla Sorensen</h6>-->
+<!--                                                            <p class="m-0">Lorem Ipsum is simply…</p>-->
+<!--                                                        </td>-->
+<!--                                                        <td>-->
+<!--                                                            <h6 class="text-muted"><i-->
+<!--                                                                    class="fas fa-circle text-c-green f-10 m-r-15"></i>9 MAY-->
+<!--                                                                17:38</h6>-->
+<!--                                                        </td>-->
+<!--                                                        <td><a href="#!"-->
+<!--                                                                class="label theme-bg2 text-white f-12">Reject</a><a-->
+<!--                                                                href="#!" class="label theme-bg text-white f-12">Approve</a>-->
+<!--                                                        </td>-->
+<!--                                                    </tr>-->
+<!--                                                    <tr class="unread">-->
+<!--                                                        <td><img class="rounded-circle" style="width:40px;"-->
+<!--                                                                    src="{{ ASSETS_ROOT }}/images/user/avatar-1.jpg" alt="activity-user">-->
+<!--                                                        </td>-->
+<!--                                                        <td>-->
+<!--                                                            <h6 class="mb-1">Ida Jorgensen</h6>-->
+<!--                                                            <p class="m-0">Lorem Ipsum is simply text of…</p>-->
+<!--                                                        </td>-->
+<!--                                                        <td>-->
+<!--                                                            <h6 class="text-muted f-w-300"><i-->
+<!--                                                                    class="fas fa-circle text-c-red f-10 m-r-15"></i>19 MAY-->
+<!--                                                                12:56</h6>-->
+<!--                                                        </td>-->
+<!--                                                        <td><a href="#!"-->
+<!--                                                                class="label theme-bg2 text-white f-12">Reject</a><a-->
+<!--                                                                href="#!" class="label theme-bg text-white f-12">Approve</a>-->
+<!--                                                        </td>-->
+<!--                                                    </tr>-->
+<!--                                                    <tr class="unread">-->
+<!--                                                        <td><img class="rounded-circle" style="width:40px;"-->
+<!--                                                                    src="{{ ASSETS_ROOT }}/images/user/avatar-2.jpg" alt="activity-user">-->
+<!--                                                        </td>-->
+<!--                                                        <td>-->
+<!--                                                            <h6 class="mb-1">Albert Andersen</h6>-->
+<!--                                                            <p class="m-0">Lorem Ipsum is simply dummy…</p>-->
+<!--                                                        </td>-->
+<!--                                                        <td>-->
+<!--                                                            <h6 class="text-muted"><i-->
+<!--                                                                    class="fas fa-circle text-c-green f-10 m-r-15"></i>21-->
+<!--                                                                July 12:56</h6>-->
+<!--                                                        </td>-->
+<!--                                                        <td><a href="#!"-->
+<!--                                                                class="label theme-bg2 text-white f-12">Reject</a><a-->
+<!--                                                                href="#!" class="label theme-bg text-white f-12">Approve</a>-->
+<!--                                                        </td>-->
+<!--                                                    </tr>-->
+<!--                                                    </tbody>-->
+<!--                                                </table>-->
+<!--                                            </div>-->
+
+                                              <div class="card-body">
+
+<form action="{% url 'book-appointment' %}" method="post">
+{% csrf_token %}
+                                            <div class="row">
+
+                                                <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Address</label>
+                                                            <input type="text" class="form-control" id="exampleInputEmail1" name="address" aria-describedby="emailHelp" placeholder="Street No, City">
+
+                                                        </div>
+
+                                                    <div class="form-group">
+                                                            <label for="date">Preferred appointment date</label>
+                                                            <input type="datetime-local" class="form-control" name="date"  id="date" required>
+                                                        </div>
+
+
+                                                </div>
+                                                <div class="col-md-6">
+
+                                                      <div class="form-group">
+                                                            <label for="state">State</label>
+                                                            <input type="text" class="form-control" name="state" placeholder="state"  id="state" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlSelect1">Which procedure do you want to make an appointment for?</label>
+                                                            <select class="form-control" id="exampleFormControlSelect1" name="procedure" required>
+                                                                <option value="" disabled>Select an option ...</option>
+                                                                <option> Medical Examination</option>
+                                                                <option> Doctor Check</option>
+                                                                <option >Result Analysis</option>
+                                                                <option >Check - up</option>
+
+                                                            </select>
+                                                        </div>
+
+
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="row" style="margin-left:0px;">
+
+                                                <div class="col-md-12" >
+{% for condition in conditions %}
+                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                        <input type="checkbox" value="{{condition}}" name="{{condition}}" id="customRadioInline{{forloop.counter}}" class="custom-control-input">
+                                                        <label class="custom-control-label" for="customRadioInline{{forloop.counter}}">{{condition}}</label>
+                                                    </div>
+
+
+{% endfor %}
+                                                </div>
+
+                                            </div>
+     <div class="form-group">
+                                                            <label for="exampleFormControlSelect1">Please select the doctor you'd like to book appointment with</label>
+                                                            <select class="form-control" id="exampleFormControlSelect1" name="doctor_id" required>
+                                                                <option value="" disabled>Select an option ...</option>
+                                                                {% for doctor in doctors %}
+                                                                <option value="{{doctor.id}}"> {{doctor.user.first_name}} {{doctor.user.last_name}}</option>
+                                                                {% endfor %}
+
+
+                                                            </select>
+                                                        </div>
+                                            <br>
+                                              <div class="form-group">
+                                                            <label for="exampleFormControlTextarea1">Please enter any other information you'd like us to know</label>
+                                                            <textarea   name="others" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                        </div>
+                                             <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+                                        </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                           <div class="card Recent-Users">
+                                        <div class="card-header">
+                                            <h5>My Appointments</h5>
+                                        </div>
+                                        <div class="card-block px-0 py-3">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover">
+                                                    <tbody>
+                                                    {% for appointment in appointments %}
+                                                    <tr class="unread">
+                                                        <td>{{appointment.date}}
+                                                        </td>
+
+                                                        <td>
+                                                           Procedure - {{appointment.procedure}}
+                                                        </td>
+                                                        <td>
+                                                            {{appointment.health_worker.user.first_name}}  {{appointment.health_worker.user.last_name}}
+                                                        </td>
+                                                        <td><a href="#!"
+                                                                class="label {% if appointment.status == 'Pending' %} theme-bg2 {% elif appointment.status == 'Accepted' %} theme-bg {% else %} theme-bg8 {% endif %} text-white f-12">{{appointment.status}}</a>
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- [ Main Content ] end -->            
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
